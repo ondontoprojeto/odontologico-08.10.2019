@@ -1,6 +1,6 @@
 <?php
-    include_once 'conexao.php';
-    $id_atend = $_POST['id_atend'];
+    include 'conexao.php';
+    $id = $_POST['id'];
     $nome =  $_POST['nome'];
     $nomeconsulta =  $_POST['nomeconsulta'];    
     $dia =  $_POST['dia'];
@@ -9,7 +9,7 @@
     $nomedentista =  $_POST['nomedentista'];
 
 
-    $sql = "UPDATE atend SET `id_atend`= '$nome' '$nomeconsulta', `dia`='$hora', `descricao`= '$nomedentista', WHERE `id_atend` = $id";
+    $sql = "UPDATE `atend` SET `nome` = '$nome',`nomeconsulta` = '$nomeconsulta',`dia` = '$dia',`hora` = '$hora',`descricao` = '$descricao',`nomedentista` = '$nomedentista', WHERE id_atend = $id";
 
 
     $atualizar = mysqli_query($con, $sql);
