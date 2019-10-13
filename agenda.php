@@ -92,19 +92,22 @@
                                         <?php } ?>                          
                                     </select>
                                     </div>
-
-                                   <div class="form-group">
-                                        <label for="data">Data</label>
-                                        <input type="date" class="form-control" id="data" placeholder="" name = "dia">
-                                    </div>                                    
-                                    <div class="form-group">
-                                        <label for="hora">Hora</label>
-                                        <input type="time" class="form-control" id="hora" placeholder="" name = "hora">
-                                    </div>                                  
-                                    <div class="form-group">
-                                        <label for="descricao">Descrição</label>
-                                        <input type="text" class="form-control" id="descricao" placeholder="" name = "descricao">
-                                    </div>
+                                            
+                                            <div class="row">
+                                            <div class="form-group col-md-6">
+                                             <label for="data">Data</label>
+                                              <input type="date" class="form-control" id="data" placeholder="dia" name="dia">
+                                            </div>
+                                            
+                                            <div class="form-group col-md-4">
+                                             <label for="hora">Hora</label>
+                                              <input type="time" class="form-control" id="hora" placeholder="hora" name="hora">
+                                            </div>
+                                            </div>                                    
+                                           
+                                                                           
+                                                                                                                                                                        
+                                    
                                     <!-- AQUI É A LISTA DE SELEÇÃO DE DENTISTA-->
                                     <div class="form-group">
                                     <label>Nome Dentista</label>
@@ -129,9 +132,9 @@
                                     </select>
                                     </div>
 
-
-                                    <div class="form-group">
-                                    <label>Procedimento 1</label>
+                                    <div class="row">
+                                    <div class="form-group col-md-6 ">
+                                    <label>Procedimentos</label>
                                     <select class="form-control" name="tipoproce" id="tipoproce" placeholder="" name="tipoproce">
                    
                                     <?php
@@ -153,10 +156,77 @@
                                     </select>
                                     </div>
 
-                                    <div class="form-group">
+                                      <div class="form-group col-md-4 ">
                                         <label for="valor">Valor</label>
                                         <input type="text" class="form-control" id="valor" placeholder="" name = "valor">
+                                      </div>
                                     </div>
+                                    
+                                    <div class="row">
+                                    <div class="form-group col-md-6 ">
+                                   <!-- <label>Procedimento 2</label> -->
+                                    <select class="form-control" name="tipoproce" id="tipoproce" placeholder="" name="tipoproce">
+                   
+                                    <?php
+                                       include_once 'conexao.php';
+
+                                        $sql = "SELECT * FROM procedimento";
+
+                                        $busca = mysqli_query($con, $sql);
+
+                                        while($array = mysqli_fetch_array($busca)){
+                                    
+                                        $tipoproce = $array['tipoproce'];
+                               
+                                    ?>
+
+                                        <option><?php echo $tipoproce ?></option> 
+                               
+                                        <?php } ?>                          
+                                    </select>
+                                    </div>
+
+                                      <div class="form-group col-md-4 ">
+                                      <!--  <label for="valor">Valor 2</label> -->
+                                        <input type="text" class="form-control" id="valor" placeholder="" name = "valor">
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                    <div class="form-group col-md-6 ">
+                                    <!-- <label>Procedimento 3</label> -->
+                                    <select class="form-control" name="tipoproce" id="tipoproce" placeholder="" name="tipoproce">
+                   
+                                    <?php
+                                       include_once 'conexao.php';
+
+                                        $sql = "SELECT * FROM procedimento";
+
+                                        $busca = mysqli_query($con, $sql);
+
+                                        while($array = mysqli_fetch_array($busca)){
+                                    
+                                        $tipoproce = $array['tipoproce'];
+                               
+                                    ?>
+
+                                        <option><?php echo $tipoproce ?></option> 
+                               
+                                        <?php } ?>                          
+                                    </select>
+                                    </div>
+
+                                      <div class="form-group col-md-4 ">
+                                       <!-- <label for="valor">Valor 3</label> -->
+                                        <input type="text" class="form-control" id="valor" placeholder="" name = "valor">
+                                      </div>
+                                    </div>
+                                  
+                                     <div class="form-group">
+                                        <label for="obs">Descrição</label>
+                                        <textarea type="text" class="form-control" id="descricao" placeholder="" name = "descricao"></textarea>
+                                     </div>                                   
+                                    
 
                                         <div class="form-check form-check-inline">  
                                           <input class="form-check-input" type="radio" name="gender" value="agendar" checked> Agendar<br>
@@ -191,8 +261,7 @@
                                <th scope="col">Paciente</th>
                                 <th scope="col">Tipo da Consulta</th>
                                 <th scope="col">Data</th>
-                                <th scope="col">Hora</th>
-                                <th scope="col">Descrição</th>
+                                <th scope="col">Hora</th>                               
                                 <th scope="col">Dentista</th>                                
                                 <th scope = "col"></th>
                             </tr>
@@ -214,7 +283,13 @@
                                     $dia = $array['dia'];
                                     $hora = $array['hora'];
                                     $descricao = $array['descricao']; 
-                                    $nomedentista = $array['nomedentista'];   
+                                    $nomedentista = $array['nomedentista'];
+                                    $procedimento_1 = $array['procedimento_1'];  
+                                    $procedimento_2 = $array['procedimento_2'];
+                                    $procedimento_3 = $array['procedimento_3']; 
+                                    $valor_1 = $array['valor_1'];
+                                    $valor_2 = $array['valor_2'];
+                                    $valor_3 = $array['valor_3'];
                                                              
                                
                                     //Ajuste da formatação da data DD/MM/AAAA
@@ -225,13 +300,20 @@
                                     <td><?php echo $nome?></td>
                                     <td><?php echo $nomeconsulta?></td>
                                     <td><?php echo $diaConsu?></td>                                    
-                                    <td><?php echo $hora?></td>
-                                    <td><?php echo $descricao?></td>
+                                    <td><?php echo $hora?></td>                                   
                                     <td><?php echo $nomedentista?></td>
+                                    <td><?php echo $procedimento_1?></td>                                    
+                                    <td><?php echo $procedimento_2?></td>                                   
+                                    <td><?php echo $procedimento_3?></td>
+                                    <td><?php echo $valor_1?></td>                                    
+                                    <td><?php echo $valor_2?></td>                                   
+                                    <td><?php echo $valor_3?></td>
+
+
                                     <td>
 
 
-                         <button type="button" class="btn btn-secondary btn-sm ml-1" data-toggle="modal" data-target="#modal3">PROCEDIMENTOS</button>   
+                         <button type="button" class="btn btn-secondary btn-sm ml-1" data-toggle="modal" data-target="#modal3">VER CADASTRO</button>   
      
                         <a class="btn btn-success btn-sm" href="consulta.php" role="button">CONSULTAS</a>                               
                         <a class="btn btn-primary btn-sm"  style="color:#fff" href="#" onclick = "excluir(<?php echo $array['id_pessoa']?>)" role="button"><i aria-hidden="true"></i>VER FICHA</a>           
