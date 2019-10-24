@@ -11,7 +11,7 @@
 	
 
 
-    $sql = "INSERT INTO atendimento VALUES(null,'{$nome}','{$data}', null, '{$descricao}','{$dentista}')"; 
+    $sql = "INSERT INTO atendimento VALUES(null,'{$nome}','{$data}', '{$descricao}','{$dentista}')"; 
 
 	// $inserir = mysqli_query($con, $sql);
 

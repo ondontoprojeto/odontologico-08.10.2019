@@ -18,11 +18,11 @@
 		
 		<?php include 'header.php'?>
 
-        <h1 class = "text-center mb-4">Cadastro de Estoque</h1>
+        <h1 class = "text-center mb-4">Procedimentos Realizados</h1>
 		
 		
 		<div class = "pl-5 pr-5">
-            <button type="button" class="btn btn-primary btn-md ml-1" data-toggle="modal" data-target="#modal1">Cadastrar Produto</button>
+            <button type="button" class="btn btn-primary btn-md ml-1" data-toggle="modal" data-target="#modal1">Cadastrar Procedimentos</button>
             <input type="button" class ="btn btn-dark ml-5" onclick="window.print();" value="Imprimir">
             <!--Modal-->
                 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
@@ -77,59 +77,34 @@
                     <table class="table w-100 mt-4 table-striped">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Nome </th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Fornecedor</th>
-                                <th scope ="col">Vencimento</th>
-                                <th scope = "col">Observações</th>
-                                <th scope = "col"></th>
+                                <th scope="col">Paciente</th>
+                                <th scope="col">Procedimento</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-
                                 include_once 'conexao.php';
 
-                                $sql = "SELECT * FROM estoque";
+                                $atendimento_id = $_GET['id'];
+                                $sql = "SELECT * FROM procedimento WHERE paciente_id = $atendimento_id";
+                                $buscar = mysqli_query($con, $sql);
 
-                                $busca = mysqli_query($con, $sql);
-
-                                while($array = mysqli_fetch_array($busca)){
-
-
-                                    $idEstoque = $array['id_estoque'];
-                                    $nroProduto = $array['numeroproduto'];
-                                    $nomeProduto = $array['nomeproduto'];
-                                    $categoria = $array['categoria'];
-                                    $quantidade = $array['quantidade'];
-                                    $fornecedor = $array['fornecedor'];
-                                    $vencimento = $array['vencimento'];
-                                    $complemento = $array['complemento'];
-
-
-                                    //Ajuste da formatação da data DD/MM/AAAA
-                                    $dtVenci = explode('-', $vencimento);
-                                    $dtVencimento = $dtVenci[2] . "-" . $dtVenci[1]. "-" . $dtVenci[0];
-
+                                while($array = mysqli_fetch_array($buscar)){
+                                     $nome = $array['nome'];
+                                     $paciente_id = $_GET['id'];
 
                             ?>
                                 <tr>
-                                    <td><?php echo $nroProduto?></td>
-                                    <td><?php echo $nomeProduto?></td>
-                                    <td><?php echo $categoria?></td>
-                                    <td><?php echo $quantidade?></td>
-                                    <td><?php echo $fornecedor?></td>
-                                    <td><?php echo $dtVencimento?></td>
-                                    <td><?php echo $complemento?></td>
+                                    <td></td>
+                                    <td></td>
                                     <td class = "d-flex justify-content-around">
-                                        <a style = "font-size: 15px" class="btn btn-warning btn-sm text-white"  style="color:#fff" href="editarEstoque.php?id=<?php echo $idEstoque?>" role="button">
+                                        <a style = "font-size: 15px" class="btn btn-warning btn-sm text-white"  style="color:#fff" href="editarProcedimento.php?id=<?php echo $array['procedimento_id']?>" role="button">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             Editar
                                         </a>
 
-                                        <a style = "font-size: 15px" class="btn btn-danger btn-sm"  style="color:#fff" href="#" onclick="excluir(<?php echo $array['id_estoque']; ?>)" role="button">
+                                        <a style = "font-size: 15px" class="btn btn-danger btn-sm"  style="color:#fff" href="#" onclick="excluir(<?php echo $array['procedimento_id']; ?>)" role="button">
                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                                             Excluir
                                         </a>

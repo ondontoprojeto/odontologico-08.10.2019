@@ -39,9 +39,7 @@ CREATE TABLE `atend` (
   `procedimento_1` varchar(255) NOT NULL,
   `procedimento_2` varchar(255) DEFAULT NULL,
   `procedimento_3` varchar(255) DEFAULT NULL,
-  `valor_1` varchar(255) NOT NULL,
-  `valor_2` varchar(255) DEFAULT NULL,
-  `valor_3` varchar(255) DEFAULT NULL
+  `valor_1` double(18,2) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -58,27 +56,8 @@ INSERT INTO `atend` (`id_atend`, `nome`, `nomeconsulta`, `dia`, `hora`, `descric
 --
 -- Estrutura da tabela `atendimento`
 --
-
-CREATE TABLE `atendimento` (
-  `id_atendimento` int(11) NOT NULL,
-  `nome` varchar(50) DEFAULT NULL,
-  `data` date DEFAULT NULL,
-  `id_paciente` int(11) DEFAULT NULL,
-  `descricao` varchar(255) DEFAULT NULL,
-  `dentista` varchar(50) NOT NULL,
-  `hora` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Extraindo dados da tabela `atendimento`
---
-
-INSERT INTO `atendimento` (`id_atendimento`, `nome`, `data`, `id_paciente`, `descricao`, `dentista`, `hora`) VALUES
-(1, 'Cirurgia', NULL, NULL, NULL, '', '00:00:00'),
-(2, 'Consulta Rotina', '0000-00-00', NULL, '', '', NULL),
-(3, '', '0000-00-00', NULL, '', '', NULL),
-(4, '', '0000-00-00', NULL, 'teste 1', 'Eu', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -91,7 +70,7 @@ CREATE TABLE `atendproced` (
   `id_atendimento` int(11) DEFAULT NULL,
   `id_consuproced` int(11) DEFAULT NULL,
   `descricao` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)
 
 -- --------------------------------------------------------
 
@@ -235,7 +214,7 @@ CREATE TABLE `pessoa` (
   `internacoes` varchar(255) DEFAULT NULL,
   `pa` varchar(255) DEFAULT NULL,
   `queixaprinc` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+)
 
 --
 -- Extraindo dados da tabela `pessoa`

@@ -5,7 +5,7 @@
 	//
 	$nomeprocedimento = $_POST['nomeprocedimento'];
 	
-    $sql = "INSERT INTO procedimento VALUES(null,'{$nomeprocedimento}')"; 
+    $sql = "INSERT INTO tipoprocedimento VALUES(null,'{$nomeprocedimento}')"; 
 
 	// $inserir = mysqli_query($con, $sql);
 

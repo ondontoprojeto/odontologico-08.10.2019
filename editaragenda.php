@@ -1,7 +1,7 @@
 <?php
     include 'conexao.php';
     
-    $id = $_GET["id"];
+    $id = $_GET["id_atend"];
 
 ?>
 <!DOCTYPE html>
@@ -25,9 +25,7 @@
     </head>
     <body>
         
-        <?php include 'header.php'?>
-
-        <h1 class = "text-center mb-4">Agenda de Pacientes</h1>
+    <?php include 'header.php'?>
         
      <div class = "container">
             <div class = "row justify-content-center">
